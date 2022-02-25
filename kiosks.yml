@@ -19,6 +19,7 @@
        tags: ["kiosk", "extras", "node"]
      - import_tasks: roles/snmp/_main.yml   
        tags: ["kiosk", "snmp", "extras"]
+     - import_tasks: roles/motd/_main.yml  
      - import_tasks: roles/ssh/_main.yml   
        tags: ["kiosk", "ssh"]
      - import_tasks: roles/users/_main.yml   

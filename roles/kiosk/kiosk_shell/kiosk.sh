@@ -8,7 +8,7 @@ xset -dpms
 
 unclutter &
 
-/usr/bin/google-chrome --noerrdialogs --force-device-scale-factor=1.1 --incognito https://tinyurl.com/alpkm1 &
+/usr/bin/google-chrome --noerrdialogs --force-device-scale-factor=1.1 --incognito --kiosk google.com &
 
 while true; do
    xdotool keydown ctrl+Tab; xdotool keyup ctrl+Tab;

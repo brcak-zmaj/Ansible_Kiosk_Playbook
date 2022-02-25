@@ -1,4 +1,4 @@
-#Ansible FULL Kiosk Mode 
+# Ansible FULL Kiosk Mode 
 
 This is a ready to go ansible KIOSK Ansible script for managing kiosk machines. Please contribute/fork for this repository for the community to use and share. I welcome improvements
 

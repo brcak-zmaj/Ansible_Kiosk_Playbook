@@ -1,0 +1,30 @@
+---
+
+  - name: Update all packages to their latest version
+    apt:
+      name: "*"
+      state: latest
+      
+  - name: Upgrade the OS (apt-get dist-upgrade)
+    apt:
+      upgrade: dist
+
+  - name: Installing Software
+    become: True
+    apt:
+      pkg:
+      - xdotool
+      - unclutter
+      - sed
+      - printer-driver-hpijs
+      - hpijs-ppds   
+      - sshpass
+      - hw-probe         
+      state: present
+      update_cache: true
+    ignore_errors: True
+    async: 60
+    poll: 60
+    tags: ["kiosk", "packages", "must_have"]   
+
+  

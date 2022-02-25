@@ -1,0 +1,99 @@
+---
+
+  - name: Set the time zone 
+    community.general.timezone: 
+      name: '{{ timezone }}' 
+    tags: ["kiosk", "etras"]      
+
+  - name: Install apt-transport-https
+    apt:
+      update_cache: yes    
+      pkg: apt-transport-https
+    tags: ["kiosk", "must_have"]   
+    
+  - name: Hold SSH-Server
+    become: yes
+    dpkg_selections:
+      name: openssh-server
+      selection: hold
+    tags: ["kiosk", "extras"]       
+      
+  - name: Hold SSH
+    become: yes
+    dpkg_selections:
+      name: ssh
+      selection: hold 
+    tags: ["kiosk", "extras"]  
+
+  - name: Ensure the locale exists
+    locale_gen:
+      name: '{{ locale }}'
+      state: present
+    tags: ["kiosk", "extras"]       
+            
+  - name: Create scripts directory
+    file:
+      path: '{{ kiosk_user_home }}/scripts'
+      state: directory
+    tags: ["kiosk", "must_have"]
+  
+  - name: Copy over service and shell scripts
+    copy: 
+         src: roles/scripts
+         dest: '{{ kiosk_user_home }}/scripts/'
+         mode: '0777'
+    tags: ["kiosk", "must_have"]
+         
+  - name: Copy over scripts for home folder
+    copy: 
+         src: roles/home/
+         dest: '{{ kiosk_user_home }}'
+         mode: '0777'
+    tags: ["kiosk", "must_have"]
+ 
+         
+  - name: Copy over Kiosk Shell
+    copy: 
+         src: roles/kiosk_shell/
+         dest: '{{ kiosk_user_home }}'
+         mode: '0777'
+    tags: ["kiosk", "must_have"]
+         
+  - name: Copy over Kiosk Service
+    become: yes
+    copy: 
+         src: roles/kiosk_service/
+         dest: /lib/systemd/system/
+         mode: '0777'
+    tags: ["kiosk", "must_have"]           
+         
+  - name: Copy over Desktop Icons
+    become: yes
+    become_user: '{{ kiosk_user }}'
+    copy: 
+         src: roles/desktop/
+         dest: '{{ kiosk_user_home }}/Desktop'
+         mode: 0777
+    tags: ["kiosk", "must_have"]
+         
+  - name: Copy over Cron jobs
+    copy: 
+         src: roles/cron/
+         dest: /etc/cron.d/
+         mode: 0600         
+                                  
+  - name: Enable Kiosk Service
+    service:
+      name: kiosk.service            
+      enabled: yes
+    tags: ["kiosk", "must_have"]    
+      
+  - name: Disable right Click
+    import_tasks: roles/right_click/main.yml
+    tags: ["kiosk", "extras"]  
+    
+  - name: Copy over motd
+    copy: 
+         src: roles/motd/motd/motd
+         dest: /etc/motd
+    tags: ["kiosk", "must_have"]

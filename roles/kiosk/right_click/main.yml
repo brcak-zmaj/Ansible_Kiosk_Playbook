@@ -1,0 +1,17 @@
+---
+
+  - name: Ensure config directory exists
+    file:
+      path: '{{ kiosk_user_home }}/.config'
+      state: directory
+      
+  - name: Ensure autostart directory exists
+    file:
+      path: '{{ kiosk_user_home }}/.config/autostart'
+      state: directory
+
+  - name: Copy over Kiosk Shell
+    copy: 
+         src: roles/kiosks/kiosk/right_click/config/disablerightclick.desktop
+         dest: '{{ kiosk_user_home }}/.config/autostart/disablerightclick.desktop'
+         mode: '0777'

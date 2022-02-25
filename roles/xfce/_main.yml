@@ -1,0 +1,29 @@
+  - name: Ensure directory exists
+    file:
+      path: '{{ kiosk_user_home }}/.config/xfce4/xfconf/xfce-perchannel-xml/'
+      state: directory
+    tags: ["proxmox", "xfce"]     
+
+  - name: Configure xfce4-power-manager
+    copy:
+      src: "roles/xfce/xfce_configs/xfce4-power-manager.xml"
+      dest: '{{ kiosk_user_home }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml'
+    tags: ["proxmox", "xfce"]
+
+  - name: Configure xfce4-screensaver
+    copy:
+      src: "roles/xfce/xfce_configs/xfce4-screensaver.xml"
+      dest: '{{ kiosk_user_home }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml'
+    tags: ["proxmox", "xfce"]   
+      
+  - name: Configure xfce4-panel
+    copy:
+      src: "roles/xfce/xfce_configs/xfce4-panel.xml"
+      dest: '{{ kiosk_user_home }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml'
+    tags: ["proxmox", "xfce"] 
+            
+  - name: Configure xfce4-desktop
+    copy:
+      src: "roles/xfce/xfce_configs/xfce4-desktop.xml"
+      dest: '{{ kiosk_user_home }}/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml'
+    tags: ["proxmox", "xfce"]    

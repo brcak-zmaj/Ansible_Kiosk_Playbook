@@ -1,0 +1,30 @@
+---
+
+  - name: Install apt-transport-https
+    apt:
+      pkg: apt-transport-https
+    tags: ["kiosk", "google", "must_have"] 
+        
+  - name: Add an Apt signing key for Google_Chrome
+    ansible.builtin.apt_key:
+      url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+      validate_certs: false
+      state: present
+    tags: ["kiosk", "google", "must_have"] 
+
+  - name: Add Google Repo
+    ansible.builtin.apt_repository:
+      filename: google-chrome.list
+      repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+      state: present       
+      update_cache: true      
+    tags: ["kiosk", "google", "must_have"] 
+             
+  - name: Install Google Chrome 
+    apt:
+      pkg:
+      - google-chrome-stable
+      state: present
+    tags: ["kiosk", "google", "must_have"] 
+
+

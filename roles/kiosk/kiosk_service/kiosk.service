@@ -1,0 +1,16 @@
+[Unit]
+Description=Chromium Kiosk
+Wants=graphical.target
+After=graphical.target
+
+[Service]
+ExecStartPre=/bin/sleep 10
+Type=simple
+ExecStart=/bin/bash /home/kiosk/scripts/kiosk.sh
+Restart=on-abort
+User=kiosk
+Group=kiosk
+
+[Install]
+WantedBy=graphical.target
+

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Google Chrome
+Comment=Access the Internet
+Exec=/home/kiosk/scripts/kiosk.sh
+Icon=google-chrome
+Path=
+Terminal=false
+StartupNotify=true
+

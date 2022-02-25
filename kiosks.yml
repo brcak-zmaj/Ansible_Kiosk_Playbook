@@ -1,0 +1,32 @@
+- name: Kiosk Playbook
+  hosts: hosts
+  gather_facts: yes
+  order: reverse_inventory
+  vars_files:
+     - vars/vars.yml     
+  tasks:                 
+     - import_tasks: roles/chrome/_main.yml   
+       tags: ["kiosk", "google"]     
+     - import_tasks: roles/packages/_main.yml   
+       tags: ["kiosk", "packages", "must_have"]
+     - import_tasks: roles/kiosk/_main.yml   
+       tags: ["kiosk", "must_have"]
+     - import_tasks: roles/lynis/_main.yml   
+       tags: ["kiosk", "lynis", "extras"]
+     - import_tasks: roles/tuning/_main.yml   
+       tags: ["kiosk", "chrome"]
+     - import_tasks: roles/node/_main.yml   
+       tags: ["kiosk", "extras", "node"]
+     - import_tasks: roles/snmp/_main.yml   
+       tags: ["kiosk", "snmp", "extras"]
+     - import_tasks: roles/ssh/_main.yml   
+       tags: ["kiosk", "ssh"]
+     - import_tasks: roles/users/_main.yml   
+       tags: ["proxmox", "users"]
+     - import_tasks: roles/xfce/_main.yml   
+       tags: ["proxmox", "xfce"]
+     - import_tasks: roles/debloat/_main.yml   
+       tags: ["kiosk", "debloat", "extras"]
+     - import_tasks: roles/cockpit/_main.yml   
+       tags: ["kiosk", "cockpit", "extras"]
+       

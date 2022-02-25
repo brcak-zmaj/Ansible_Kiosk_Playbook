@@ -1,0 +1,4 @@
+export DISPLAY=:0.0 && export XAUTHORITY=/home/kiosk/.Xauthority && sudo -u kiosk /usr/bin/notify-send Hello "PLEASE DONT REBOOT YOUR COMPUTER"
+export DISPLAY=:0.0 && export XAUTHORITY=/home/kiosk/.Xauthority && sudo -u kiosk /usr/bin/notify-send Hello "If theres an issue notify your supervisor/IT"
+export DISPLAY=:0.0 && export XAUTHORITY=/home/kiosk/.Xauthority && sudo -u kiosk /usr/bin/notify-send Hola "POR FAVOR NO REINICIE LA COMPUTADORA"
+export DISPLAY=:0.0 && export XAUTHORITY=/home/kiosk/.Xauthority && sudo -u kiosk /usr/bin/notify-send Hola "Si hay un problema notifique a su supervisor"

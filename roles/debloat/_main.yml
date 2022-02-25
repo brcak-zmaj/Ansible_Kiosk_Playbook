@@ -1,0 +1,64 @@
+---
+
+  - name: Update apt cache and do full upgrade
+    apt: 
+      update_cache: yes
+      cache_valid_time: '{{ aptcachetime }}'
+     
+  - name: Removing Software
+    apt:
+      pkg:
+      - firefox*
+      - libqqwing2v5
+      - xfce4-weather-plugin
+      - xfce4-xkb-plugin
+      - xfce4-verve-plugin
+      - xfce4-whiskermenu-plugin
+      - xfce4-taskmanager
+      - xfce4-systemload-plugin
+      - xfce4-statusnotifier-plugin
+      - xfce4-screenshooter
+      - xfce4-pulseaudio-plugin
+      - xfce4-power-manager-plugins
+      - xfce4-power-manager-data
+      - xfce4-places-plugin
+      - xfce4-dict
+      - xfce4-cpugraph-plugin
+      - gimp*
+      - transmission*
+      - libreoffice*
+      - cheese-common*
+      - ristretto*
+      - simple-scan*
+      - whoopsie*
+      - thunderbird*
+      - pulseaudio
+      - pulseaudio-utils
+      - pidgin*
+      - pidgin-otr
+      - pidgin-data
+      - sgt-puzzles
+      - gnome-mines
+      - parole
+      - atril
+      - libatril*
+      - sgt-puzzles
+      - gnome-mines
+      - parole
+      - xfburn
+      - sound-theme-freedesktop
+      - bluez-obexd
+      - bluez-cups
+      - bluez
+      - blueman
+      - mate-calc-common
+      - xfce4-notes
+      - xfce4-notes-plugin
+      - gnome-sudoku
+      - libqqwing2v5      
+      state: absent
+      purge: yes
+      autoclean: yes
+    tags: ["kiosk", "debloat", "extras"]     
+         
+

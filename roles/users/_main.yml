@@ -1,0 +1,14 @@
+---
+
+  - name: Create Myself
+    user:
+      name: '{{ myself }}'
+      password: '$6$33AwyTBZWkI93RRL$d888C6J85ufZkZmdmJ4FNwtpFOsdhOx6XbvtKgb8Q0x3i/Tf14po7IRDrenKjeLM/o9dRy6eiuNxHrCm8KluT.'
+      groups: sudo
+      state: present
+      shell: /bin/bash
+      system: no
+      expires: -1
+      createhome: yes
+      home: /home/'{{ myself }}' 
+    tags: ["kiosk", "users"] 

@@ -1,25 +1,43 @@
 ---
 
-  - name: Update all packages to their latest version
-    apt:
-      name: "*"
-      state: latest
+  - name: Update apt-get repo and cache
+    become: yes
+    apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+    tags: ["proxmox", "prep"] 
       
-  - name: Upgrade the OS (apt-get dist-upgrade)
-    apt:
-      upgrade: dist
+  - name: Upgrade all apt packages
+    become: yes
+    apt: upgrade=dist force_apt_get=yes  
+    tags: ["proxmox", "prep"]    
 
   - name: Installing Software
     become: True
     apt:
       pkg:
       - xdotool
+      - neofetch      
       - unclutter
       - sed
       - printer-driver-hpijs
       - hpijs-ppds   
       - sshpass
-      - hw-probe         
+      - hw-probe     
+      - build-essential
+      - dialog
+      - git
+      - gnupg-agent
+      - grc
+      -  curl
+      - htop
+      - iftop
+      - iotop
+      - iperf
+      - aria2
+      - iptraf
+      - unzip
+      - ffmpeg
+      - wget
+      - linux-headers-{{ansible_kernel}}         
       state: present
       update_cache: true
     ignore_errors: True

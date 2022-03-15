@@ -8,7 +8,7 @@ Overview
 This is a quick and simple role that was intended to convert an old machine (tested with xubuntu) to a kiosk PC for displaying a URL in a browser. Please submit pull requests..
 > Idealy you would run this once and then any other time run with the --skip-tags=skip to save some time
 > This is for a machine runing xubuntu 
- 
+> Note: I am providing code in the repository to you under an open source license. Because this is my personal repository, the license you receive to my code is from me and not my employer. 
 
 Plays
 --------------------
